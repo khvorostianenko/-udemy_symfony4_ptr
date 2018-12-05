@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Service\Greeting;
+use App\Service\VeryBadDesign;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +22,15 @@ class BlogController extends AbstractController
      */
     private $greeting;
     
-    public function __construct(Greeting $greeting)
+    /**
+     * @var VeryBadDesign
+     */
+    private $badDesing;
+    
+    public function __construct(Greeting $greeting, VeryBadDesign $badDesign)
     {
         $this->greeting = $greeting;
+        $this->badDesing = $badDesign;
     }
     
     /**
