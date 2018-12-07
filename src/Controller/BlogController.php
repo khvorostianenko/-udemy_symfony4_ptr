@@ -8,36 +8,34 @@
 
 namespace App\Controller;
 
-
 use App\Service\Greeting;
-use App\Service\VeryBadDesign;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class BlogController extends AbstractController
+class BlogController
 {
     /**
      * @var Greeting
      */
     private $greeting;
-    
     /**
-     * @var VeryBadDesign
+     * @var \Twig_Environment
      */
-    private $badDesing;
+    private $twig;
     
-    public function __construct(Greeting $greeting, VeryBadDesign $badDesign)
+    public function __construct(Greeting $greeting, \Twig_Environment $twig)
     {
         $this->greeting = $greeting;
-        $this->badDesing = $badDesign;
+        $this->twig = $twig;
     }
     
     /**
-     * @Route("/", name="blog_index")
+     * @Route("/{name}", name="blog_index")
      */
-    public function index(Request $request)
+    public function index($name)
     {
-        return $this->render('base.html.twig', ['message' => $this->greeting->greet($request->get('name'))]);
+        $html = $this->twig->render('base.html.twig', ['message' => $this->greeting->greet($name)]);
+        
+        return new Response($html);
     }
 }
