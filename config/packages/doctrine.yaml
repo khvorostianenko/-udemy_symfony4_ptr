@@ -17,13 +17,20 @@ doctrine:
 
         url: '%env(resolve:DATABASE_URL)%'
     orm:
+        # Auto generated if debug is true, otherwise
+        # php app/console cache:warmup --env=prod --no-debug
         auto_generate_proxy_classes: true
+        # the_table_name, the_column_name
         naming_strategy: doctrine.orm.naming_strategy.underscore
+        # Automatically look for mapping configuration
         auto_mapping: true
         mappings:
+            # Entity mapping for App namespace
             App:
                 is_bundle: false
                 type: annotation
+                # Entities could be found in directory:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
+                # Shorthand App:Post, App:User
                 alias: App
