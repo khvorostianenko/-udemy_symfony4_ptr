@@ -35,6 +35,10 @@ services:
     app.greeting:
         public: true
         alias: App\Service\Greeting
+        
+    App\Twig\AppExtention:
+        arguments:
+            $locale: '%locale%'
     
     # App\Controller\BlogController: ['@App\Service\Greeting']
     
