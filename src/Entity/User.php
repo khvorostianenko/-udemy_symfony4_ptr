@@ -140,4 +140,51 @@ class User implements UserInterface, \Serializable
             $this->username,
             $this->password) = unserialize($serialized);
     }
+    
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+    
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+    
+    /**
+     * @param mixed $fullName
+     */
+    public function setFullName($fullName): void
+    {
+        $this->fullName = $fullName;
+    }
 }
