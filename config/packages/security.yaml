@@ -1,7 +1,16 @@
 security:
+    encoders:
+        # vendor/symfony/security-core/User/User.php
+        # User is the user implementation used by the in-memory user provider
+        Symfony\Component\Security\Core\User\User: plaintext
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        in_memory:
+            memory:
+                users:
+                    john:
+                        password: helloJohn
+                        roles: 'ROLE_USER'
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -10,7 +19,8 @@ security:
             anonymous: true
 
             # activate different ways to authenticate
-
+            
+            http_basic: ~
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
@@ -20,5 +30,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/micro-post, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
