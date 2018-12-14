@@ -1,14 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mikhail
- * Date: 14.12.18
- * Time: 7:52
- */
-
 namespace App\Controller;
-
-
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,7 +18,7 @@ class SecurityController
     }
     
     /**
-     * @Route("/login", name="")
+     * @Route("/login", name="security_login")
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {

@@ -37,12 +37,6 @@ class User implements UserInterface, \Serializable
      */
     private $fullName;
     
-    
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-    
     /**
      * Returns the roles granted to the user.
      *
@@ -186,5 +180,13 @@ class User implements UserInterface, \Serializable
     public function setFullName($fullName): void
     {
         $this->fullName = $fullName;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
