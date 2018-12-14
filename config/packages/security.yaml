@@ -19,7 +19,27 @@ security:
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
+            form_login: true
+                # имя url по которому будет подтверждаться форма 
+                check_path: security_login
+                # url на который будет кидать клиента, если он будет пытаться зайти в "закрытую" секцию
+                # url по которому будет рендериться логин форма
+                login_path: security_login
+                crsf_toke_generator: security.csrf.token_manager
+                # url на который будет кидать, если до захода на логин форму небыло целевой страницы для посещения
+                default_target_path: micro_post_index
+                # если хочешь редиректить всегда после авторизации на default_target_path
+                # always_use_target_path: false
+                # редиректить куда хотел зайти в закрытый раздел после авторизации (не очень понятно как оно работает в связке с always_use_target_path)
+                # use_refer: true
+                # куда перенапрялять если авторизация не была пройдена успешно
+                # failure_path: 
+            logout:
+                # Симфони сама сделаем логуот, нам надо только создать роут в контрллере. 
+                # Сам метод должен быть пустым
+                path: security_logout
+                # куда кинет после успешного logout
+                target: micro_post_index 
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
