@@ -26,6 +26,12 @@ class MicroPost
     private $text;
     
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
+     * @ORM\JoinColumn()
+     */
+    private $user;
+    
+    /**
      * @ORM\Column(type="datetime")
      */
     private $time;
@@ -68,5 +74,21 @@ class MicroPost
     public function setTime($time): void
     {
         $this->time = $time;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
     }
 }
