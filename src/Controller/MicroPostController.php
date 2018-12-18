@@ -114,7 +114,6 @@ class MicroPostController
         
         $microPost = new MicroPost();
         $microPost->setUser($user);
-        $microPost->setTime(new \DateTime());
         
         $form = $this->formFactory->create(MicroPostType::class, $microPost);
         $form->handleRequest($request);
