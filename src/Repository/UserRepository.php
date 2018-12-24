@@ -31,7 +31,9 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->getFindAllWithMoreThan5PostsQuery()
             ->andHaving('user.id != :user')
-            ->setParameter('user', $user);
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
     
     private function getFindAllWithMoreThan5PostsQuery(): QueryBuilder
