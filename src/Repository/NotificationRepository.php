@@ -26,9 +26,22 @@ class NotificationRepository extends ServiceEntityRepository
         
         return $qb->select('COUNT(n)')
             ->where('n.user = :user')
+            ->andWhere('n.seen = 0')
             # доктрина сама понимает, что необходимо сзять id шник переданного параметра
             ->setParameter('user', $user)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+    
+    public function markAllAsReadByUser($user)
+    {
+        $qb = $this->createQueryBuilder('n');
+    
+        $qb->update('App\Entity\Notification', 'n')
+            ->set('n.seen', true)
+            ->where('n.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->execute();
     }
 }
