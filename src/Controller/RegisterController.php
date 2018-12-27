@@ -6,6 +6,7 @@ use App\Event\UserRegisterEvent;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -18,7 +19,7 @@ class RegisterController extends Controller
     public function register(
         UserPasswordEncoderInterface $passwordEncoder, 
         Request $request,
-        EventDispatcher $eventDispatcher
+        EventDispatcherInterface $eventDispatcher
     )
     {
         $user = new User();
