@@ -1,6 +1,9 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -37,5 +40,34 @@ class SecurityController
     public function logout()
     {
         
+    }
+    
+    /**
+     * @Route("/confirm/{token}", name="security_confirm")
+     */
+    public function confirm(
+        string $token, 
+        UserRepository $userRepository,
+        EntityManagerInterface $entityManager
+    ) {
+        /** @var User $user */
+        $user = $userRepository->findOneBy(
+            ['confirmationToken' => $token]
+        );
+        
+        if ($user !== null) {
+            $user->setEnabled(true);
+            $user->setConfirmationToken('');
+    
+            /* persist не нужен, так как сам юзер уже есть */
+            $entityManager->flush();
+        }
+        
+        return new Response(
+            $this->twig->render(
+                'security/confirmation.html.twig', 
+                ['user' => $user]
+            )
+        );
     }
 }
