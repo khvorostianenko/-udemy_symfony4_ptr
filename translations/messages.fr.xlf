@@ -56,13 +56,15 @@
 
             <trans-unit id="email.registration">
                 <source>email.registration</source>
-                <target><![CDATA[<h3>Bienvenue dans l'application!</h3>
+                <target>
+                    <![CDATA[<h3>Bienvenue dans l'application!</h3>
 <p>Bonjour %name%! Vous êtes inscrit dans l'application!</p>
 <p>Veuillez confirmer le compte en cliquant sur ce lien
 <a href="%confirm-link%">lien</a>.
 </p>
 <p>Pour vous connecter, accédez à <a href="%login-link%">page de connexion</a>.</p>
-<p>Merci!</p>]]></target>
+<p>Merci!</p>]]>
+                </target>
             </trans-unit>
         </body>
     </file>

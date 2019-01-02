@@ -53,17 +53,6 @@
                 <target>You have not notifications</target>
             </trans-unit>
 
-            <trans-unit id="email.registration">
-                <source>email.registration</source>
-                <target><![CDATA[<h3>Welcome to the app!</h3>
-<p>Hello %name%! You've registered into the app!</p>
-<p>Please confirm account by clicking this
-    <a href="%confirm-link%">link</a>.
-</p>
-<p>To login, go to <a href="%login-link%">login page</a>.</p>
-<p>Thanks!</p>]]></target>
-            </trans-unit>
-
             <trans-unit id="user.followers">
                 <source>Followers</source>
                 <target>{0} No followers|{1} Follower|]1,Inf[ %count% Followers</target>
@@ -72,6 +61,21 @@
             <trans-unit id="user.following">
                 <source>Following</source>
                 <target>{0} Following no one|]0,Inf[ Following %count%</target>
+            </trans-unit>
+
+            <trans-unit id="email.registration">
+                <source>email.registration</source>
+                <target>
+                    <![CDATA[<h3>Welcome to the app!</h3>
+                    <p>Hello %name%! You've registered into the app!</p>
+                    <p>Please, confirm account by clicking this
+                        <a href="%confirm-link%">
+                            link
+                        </a>
+                    </p>
+                    <p>To login, go to <a href="%login-link%">login page</a></p>
+                    <p>Thanks!</p>]]>
+                </target>
             </trans-unit>
         </body>
     </file>
