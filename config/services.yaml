@@ -62,6 +62,9 @@ services:
             # чтоб не выдавало "There is already an active transaction"
             - { lock_mode: 1 }
     
+    App\Event\LocaleSubscriber:
+        arguments:
+            - '%kernel.default_locale%'
             
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
