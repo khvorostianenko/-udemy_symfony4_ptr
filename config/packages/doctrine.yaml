@@ -16,6 +16,8 @@ doctrine:
             collate: utf8mb4_unicode_ci
 
         url: '%env(resolve:DATABASE_URL)%'
+        # негативный смотрящий вперед
+        schema_filter: ~^(?!sessions)~
     orm:
         # Auto generated if debug is true, otherwise
         # php app/console cache:warmup --env=prod --no-debug
