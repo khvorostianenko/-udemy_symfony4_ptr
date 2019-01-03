@@ -103,6 +103,11 @@ class User implements \Serializable, AdvancedUserInterface
      */
     private $postsLiked;
     
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserPreferences", cascade={"persist"})
+     */
+    private $userPreferences;
+    
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -423,5 +428,21 @@ class User implements \Serializable, AdvancedUserInterface
     public function isEnabled()
     {
         return $this->enabled;
+    }
+    
+    /**
+     * @return UserPreferences|null
+     */
+    public function getUserPreferences()
+    {
+        return $this->userPreferences;
+    }
+    
+    /**
+     * @param mixed $userPreferences
+     */
+    public function setUserPreferences($userPreferences): void
+    {
+        $this->userPreferences = $userPreferences;
     }
 }
