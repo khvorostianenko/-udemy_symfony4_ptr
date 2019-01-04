@@ -105,6 +105,7 @@ class User implements \Serializable, AdvancedUserInterface
     
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\UserPreferences", cascade={"persist"})
+     * In video just "preferences"
      */
     private $userPreferences;
     
