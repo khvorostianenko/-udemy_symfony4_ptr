@@ -13,15 +13,34 @@ class MailerTest extends TestCase
         $user = new User();
         $user->setEmail('john@some.em');
         
-        $swiftMock = $this->getMockBuilder(\Swift_Mailer::class)
+        $swiftMailer = $this->getMockBuilder(\Swift_Mailer::class)
             ->disableOriginalConstructor()
             ->getMock();
-    
+        
+        $swiftMailer->expects($this->once())->method('send')
+            ->with($this->callback(function ($subject) {
+                $messageStr = (string)$subject;
+                
+                return strpos($messageStr, "From: me@domain.com") !== false
+                    && strpos($messageStr, "Content-Type: text/html; charset=utf-8") !== false
+                    && strpos($messageStr, "Subject: Welcome to the micro-post app!") !== false
+                    && strpos($messageStr, "To: john@some.em") !== false
+                    && strpos($messageStr, 'This is a message body') !== false;
+            }));
+        
         $twigMock = $this->getMockBuilder(\Twig_Environment::class)
             ->disableOriginalConstructor()
             ->getMock();
-            
-        $mailer = new Mailer($swiftMock, $twigMock, 'me@domain.com');
+        $twigMock->expects($this->once())
+            ->method('render')
+            ->with(
+                'email/registration.html.twig',
+                [
+                    'user' => $user,
+                ]
+            )->willReturn('This is a message body');
+        
+        $mailer = new Mailer($swiftMailer, $twigMock, 'me@domain.com');
         $mailer->sendConfirmationEmail($user);
     }
 }
